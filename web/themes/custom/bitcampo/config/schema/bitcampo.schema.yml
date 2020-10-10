@@ -1,0 +1,5 @@
+# Schema for the configuration files of the Bitcampo theme.
+
+bitcampo.settings:
+  type: theme_settings
+  label: 'Bitcampo settings'

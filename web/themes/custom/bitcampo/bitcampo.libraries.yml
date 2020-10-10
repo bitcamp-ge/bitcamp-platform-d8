@@ -1,0 +1,10 @@
+style:
+  version: VERSION
+  css:
+    theme:
+      assets/css/bitcampo.style.css: {}
+  js:
+    assets/js/bitcampo.script.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal

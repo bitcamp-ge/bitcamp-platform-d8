@@ -1,0 +1,25 @@
+uuid: 8c3bd2c5-213a-43a0-a002-68bc9179f2bc
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - bitcampo
+_core:
+  default_config_hash: fRKXNB91UxDvEMkzCR8ZBsawfC6Fqbme2gtobei3gu4
+id: bitcampo_branding
+theme: bitcampo
+region: navbar_branding
+weight: -3
+provider: null
+plugin: system_branding_block
+settings:
+  id: system_branding_block
+  label: 'Site branding'
+  provider: system
+  label_display: '0'
+  use_site_logo: true
+  use_site_name: true
+  use_site_slogan: true
+visibility: {  }

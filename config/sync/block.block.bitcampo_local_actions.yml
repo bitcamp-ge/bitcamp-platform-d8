@@ -1,0 +1,20 @@
+uuid: 233f6fb5-1b88-428a-8809-fed74a6d2b76
+langcode: en
+status: true
+dependencies:
+  theme:
+    - bitcampo
+_core:
+  default_config_hash: PffmQ-ABSz5tFjWmVsR7NesunDnEivvopnJnBjl8KNE
+id: bitcampo_local_actions
+theme: bitcampo
+region: content
+weight: -1
+provider: null
+plugin: local_actions_block
+settings:
+  id: local_actions_block
+  label: 'Primary admin actions'
+  provider: core
+  label_display: '0'
+visibility: {  }

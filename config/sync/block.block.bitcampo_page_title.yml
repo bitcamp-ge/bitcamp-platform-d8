@@ -1,0 +1,20 @@
+uuid: b3466eee-4a79-4282-a610-8916634a4683
+langcode: en
+status: true
+dependencies:
+  theme:
+    - bitcampo
+_core:
+  default_config_hash: 8yptDf6WrXxeyevUz4nP5vfr7BtxQqCBMninhV2IJ1g
+id: bitcampo_page_title
+theme: bitcampo
+region: content
+weight: -3
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Page title'
+  provider: core
+  label_display: '0'
+visibility: {  }
