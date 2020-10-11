@@ -1,0 +1,11 @@
+app_id: '616846288914929'
+app_secret: f75610063061dd01a26ac330ad83e194
+api_version: v7.0
+post_login_path: '<front>'
+redirect_user_form: 0
+disable_admin_login: 1
+disabled_roles:
+  administrator: administrator
+  manager: '0'
+_core:
+  default_config_hash: WndXFDY9CEEG_AqDRG0TFa79Q6hhtkyRw4Ec108U5KM

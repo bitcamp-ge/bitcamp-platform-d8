@@ -38,8 +38,8 @@ module:
   profile: 0
   quickedit: 0
   rdf: 0
-  rules: 0
   shortcut: 0
+  simple_fb_connect: 0
   syslog: 0
   system: 0
   taxonomy: 0
