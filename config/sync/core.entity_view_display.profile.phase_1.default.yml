@@ -1,0 +1,62 @@
+uuid: f9f441f8-f10a-4e43-9001-e42d5c1f77e9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.profile.phase_1.field_breakout_url
+    - field.field.profile.phase_1.field_completed
+    - field.field.profile.phase_1.field_final_project_url
+    - field.field.profile.phase_1.field_verified
+    - profile.type.phase_1
+  module:
+    - link
+id: profile.phase_1.default
+targetEntityType: profile
+bundle: phase_1
+mode: default
+content:
+  field_breakout_url:
+    weight: 2
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
+  field_completed:
+    weight: 0
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+    region: content
+  field_final_project_url:
+    weight: 3
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
+  field_verified:
+    weight: 1
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+    region: content
+hidden: {  }

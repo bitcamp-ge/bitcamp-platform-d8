@@ -1,0 +1,29 @@
+uuid: a23e5864-1f48-46ba-8599-f8c397822739
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.field_completed
+    - profile.type.phase_1
+  module:
+    - disable_field
+third_party_settings:
+  disable_field:
+    add_disable: none
+    edit_disable: none
+id: profile.phase_1.field_completed
+field_name: field_completed
+entity_type: profile
+bundle: phase_1
+label: 'დავასრულე პირველი ეტაპი'
+description: 'მონიშნეთ მხოლოდ იმ შემთხვევაში თუ დაასრულეთ პირველი ეტაპი და შევსებული გაქვთ ქვემოთ მოცემული ყველა ველი.'
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: ✅
+  off_label: ❌
+field_type: boolean

@@ -1,0 +1,28 @@
+uuid: 5ed06145-b3d9-483e-99c7-dc7a876f084b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.field_final_project_url
+    - profile.type.phase_1
+  module:
+    - disable_field
+    - link
+third_party_settings:
+  disable_field:
+    add_disable: none
+    edit_disable: none
+id: profile.phase_1.field_final_project_url
+field_name: field_final_project_url
+entity_type: profile
+bundle: phase_1
+label: 'ფინალური პროექტის მისამართი  (URL / CodeHS)'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 16
+  title: 0
+field_type: link

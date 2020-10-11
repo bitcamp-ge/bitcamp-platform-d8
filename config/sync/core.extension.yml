@@ -5,20 +5,27 @@ module:
   admin_toolbar_tools: 0
   block: 0
   breakpoint: 0
+  comment: 0
   components: 0
   config: 0
+  contact: 0
   contextual: 0
   datetime: 0
   datetime_range: 0
   dblog: 0
+  disable_field: 0
+  double_field: 0
   dynamic_page_cache: 0
   editor: 0
+  entity: 0
   field: 0
+  field_permissions: 0
   field_ui: 0
   file: 0
   filter: 0
   image: 0
   link: 0
+  masquerade: 0
   media: 0
   media_library: 0
   menu_link_content: 0
@@ -28,8 +35,10 @@ module:
   page_cache: 0
   path: 0
   path_alias: 0
+  profile: 0
   quickedit: 0
   rdf: 0
+  rules: 0
   shortcut: 0
   syslog: 0
   system: 0
@@ -37,9 +46,17 @@ module:
   telephone: 0
   text: 0
   toolbar: 0
+  typed_data: 0
   update: 0
   user: 0
   views_ui: 0
+  webform: 0
+  webform_image_select: 0
+  webform_submission_export_import: 0
+  webform_submission_log: 0
+  webform_templates: 0
+  webform_ui: 0
+  webform_bootstrap: 1
   views: 10
   minimal: 1000
 theme:

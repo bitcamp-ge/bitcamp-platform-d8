@@ -1,0 +1,38 @@
+uuid: 5d014eb8-f481-445f-820f-e5d2bce587ff
+langcode: en
+status: true
+dependencies: {  }
+id: manager
+label: Manager
+weight: 2
+is_admin: null
+permissions:
+  - 'access administration pages'
+  - 'access comments'
+  - 'access contextual links'
+  - 'access files overview'
+  - 'access media overview'
+  - 'access profile overview'
+  - 'access shortcuts'
+  - 'access site in maintenance mode'
+  - 'access taxonomy overview'
+  - 'access toolbar'
+  - 'access user profiles'
+  - 'create media'
+  - 'delete media'
+  - 'edit own comments'
+  - 'link to any page'
+  - 'post comments'
+  - 'skip comment approval'
+  - 'update any phase_1 profile'
+  - 'update media'
+  - 'update own phase_1 profile'
+  - 'use admin toolbar search'
+  - 'view all media revisions'
+  - 'view any phase_1 profile'
+  - 'view any profile'
+  - 'view own phase_1 profile'
+  - 'view own profile'
+  - 'view own unpublished media'
+  - 'view own unpublished profile'
+  - 'view the administration theme'

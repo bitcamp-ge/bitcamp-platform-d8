@@ -1,0 +1,33 @@
+uuid: f4b1f3b3-0b1b-4602-8552-52c5dfcdfdf6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.field_verified
+    - profile.type.phase_1
+  module:
+    - disable_field
+third_party_settings:
+  disable_field:
+    add_disable: roles_enable
+    edit_disable: roles_enable
+    add_roles:
+      - manager
+    edit_roles:
+      - manager
+id: profile.phase_1.field_verified
+field_name: field_verified
+entity_type: profile
+bundle: phase_1
+label: შემოწმებულია
+description: 'ამ ველს ნიშნავს BitCamp - ის მენეჯერი ნამუშევრების შემოწმების შემდეგ.'
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: ✅
+  off_label: ❌
+field_type: boolean

@@ -1,0 +1,28 @@
+uuid: 25b6d9b0-c3b9-400f-ae33-0ac12e701457
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.field_breakout_url
+    - profile.type.phase_1
+  module:
+    - disable_field
+    - link
+third_party_settings:
+  disable_field:
+    add_disable: none
+    edit_disable: none
+id: profile.phase_1.field_breakout_url
+field_name: field_breakout_url
+entity_type: profile
+bundle: phase_1
+label: 'Breakout - ის მისამართი (URL / CodeHS)'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 16
+  title: 0
+field_type: link

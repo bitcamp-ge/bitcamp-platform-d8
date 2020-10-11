@@ -1,0 +1,14 @@
+uuid: ad070203-db92-44d5-9f97-0ab17636906b
+langcode: en
+status: true
+dependencies: {  }
+id: phase_1
+label: 'პირველი ეტაპი'
+display_label: 'პირველი ეტაპი'
+multiple: false
+registration: false
+roles:
+  authenticated: authenticated
+  manager: manager
+allow_revisions: false
+new_revision: false
