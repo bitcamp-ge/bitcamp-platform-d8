@@ -63,6 +63,9 @@ services:
   nginx:
     image: wodby/nginx:$NGINX_TAG
     container_name: "${PROJECT_NAME}_nginx"
+    ports:
+      - 80:80
+      - 443:443
     depends_on:
     - php
     environment:
@@ -296,7 +299,7 @@ services:
     - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
     ports:
     - 8000:80
-    - 443:443
+    - 4433:443
 #    - '8080:8080' # Dashboard
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock

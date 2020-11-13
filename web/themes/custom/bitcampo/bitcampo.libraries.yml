@@ -3,6 +3,7 @@ style:
   css:
     theme:
       assets/css/bitcampo.style.css: {}
+      assets/css/cover.css: {}
   js:
     assets/js/bitcampo.script.js: {}
   dependencies:
