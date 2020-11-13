@@ -1,0 +1,12 @@
+uuid: fbcb933a-e67b-409f-8a52-9b74a2976942
+langcode: en
+status: true
+dependencies: {  }
+id: front_page
+label: 'Front Page'
+description: 'BitCamp - ვებ-პროგრამირების სასწავლო პლათფორმა'
+use_admin_theme: false
+path: /front
+access_logic: and
+access_conditions: {  }
+parameters: {  }

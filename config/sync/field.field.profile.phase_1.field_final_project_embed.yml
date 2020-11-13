@@ -1,0 +1,31 @@
+uuid: 3d7b05cd-41a1-4f4f-94d3-322aa170a10e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.field_final_project_embed
+    - profile.type.phase_1
+  module:
+    - disable_field
+third_party_settings:
+  disable_field:
+    add_disable: roles_enable
+    edit_disable: roles_enable
+    add_roles:
+      - manager
+      - administrator
+    edit_roles:
+      - manager
+      - administrator
+id: profile.phase_1.field_final_project_embed
+field_name: field_final_project_embed
+entity_type: profile
+bundle: phase_1
+label: 'Final Project Embed'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

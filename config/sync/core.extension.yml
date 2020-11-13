@@ -10,6 +10,7 @@ module:
   config: 0
   contact: 0
   contextual: 0
+  ctools: 0
   datetime: 0
   datetime_range: 0
   dblog: 0
@@ -33,6 +34,8 @@ module:
   node: 0
   options: 0
   page_cache: 0
+  page_manager: 0
+  page_manager_ui: 0
   path: 0
   path_alias: 0
   profile: 0
@@ -49,6 +52,7 @@ module:
   typed_data: 0
   update: 0
   user: 0
+  views_bulk_operations: 0
   views_ui: 0
   webform: 0
   webform_image_select: 0

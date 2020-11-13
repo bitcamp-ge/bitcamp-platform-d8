@@ -1,0 +1,8 @@
+uuid: 5d3e6939-05a5-42ff-aaf1-dbb342731310
+langcode: en
+status: true
+dependencies: {  }
+id: manage-phase-1
+label: 'Manage phase 1'
+description: ''
+locked: false

@@ -1,11 +1,11 @@
 uuid: 8c7ae4ba-23ad-423f-94a0-1a5f8e11e4fd
 name: BitCamp
 mail: oto@bitcamp.ge
-slogan: ''
+slogan: 'ვებ-პროგრამირების სასწავლო პლათფორმა'
 page:
   403: ''
   404: ''
-  front: /user/login
+  front: /front
 admin_compact_mode: false
 weight_select_max: 100
 langcode: en

@@ -1,0 +1,21 @@
+uuid: 60d9923c-6a74-46cc-9010-c297387ca760
+langcode: en
+status: true
+dependencies:
+  config:
+    - page_manager.page.front_page
+id: front_page-block_display-0
+label: 'Front Page'
+variant: block_display
+variant_settings:
+  blocks: {  }
+  id: block_display
+  uuid: 5c1c7402-1214-4bee-925a-441ef818c7b8
+  label: null
+  weight: 0
+  page_title: 'BitCamp - ვებ-პროგრამირების სასწავლო პლათფორმა'
+page: front_page
+weight: 0
+selection_criteria: {  }
+selection_logic: and
+static_context: {  }
