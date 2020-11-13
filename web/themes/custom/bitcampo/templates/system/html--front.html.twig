@@ -74,11 +74,12 @@
 
   <main role="main" class="inner cover">
     <a href="/user/simple-fb-connect">
-      <img class="cover-heading" src="{{ base_path ~ directory }}/images/fb.png" style="
+      <img class="fb-login" src="{{ base_path ~ directory }}/images/fb.png" style="
         border-radius: 8px;
         max-height: 56px;
         margin-top: 50px;
         margin-bottom: 50px;
+        display: none;
         width: auto;">
     </a>
 
@@ -108,6 +109,14 @@
   gtag('js', new Date());
 
   gtag('config', 'UA-168888380-1');
+</script>
+
+<script>
+var urlParams = new URLSearchParams(window.location.search);
+var fb = urlParams.get('fb');
+if (fb === 'true'){
+    document.getElementsByClassName("fb-login")[0].style.display = "inline";
+}
 </script>
 
 </body>
