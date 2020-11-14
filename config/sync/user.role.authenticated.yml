@@ -11,6 +11,7 @@ is_admin: false
 permissions:
   - 'access content'
   - 'create phase_1 profile'
+  - 'opt-in or out of google analytics tracking'
   - 'update own phase_1 profile'
   - 'view media'
   - 'view own phase_1 profile'

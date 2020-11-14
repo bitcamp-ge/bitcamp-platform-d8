@@ -24,6 +24,7 @@ module:
   field_ui: 0
   file: 0
   filter: 0
+  google_analytics: 0
   image: 0
   link: 0
   masquerade: 0
