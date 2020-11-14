@@ -2,13 +2,25 @@ uuid: a6934ec0-f58e-4d47-9161-d9a15c52f115
 langcode: en
 status: true
 dependencies:
+  config:
+    - field.field.user.user.field_user_comment
   module:
+    - comment
     - user
 id: user.user.default
 targetEntityType: user
 bundle: user
 mode: default
 content:
+  field_user_comment:
+    weight: 3
+    label: above
+    settings:
+      view_mode: default
+      pager_id: 0
+    third_party_settings: {  }
+    type: comment_default
+    region: content
   masquerade:
     weight: 1
     region: content

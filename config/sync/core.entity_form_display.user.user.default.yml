@@ -2,7 +2,10 @@ uuid: 995c96ae-f147-459a-ac36-3b8121976517
 langcode: en
 status: true
 dependencies:
+  config:
+    - field.field.user.user.field_user_comment
   module:
+    - comment
     - user
 id: user.user.default
 targetEntityType: user
@@ -16,6 +19,17 @@ content:
     region: content
   contact:
     weight: 5
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_user_comment:
+    weight: 7
+    settings: {  }
+    third_party_settings: {  }
+    type: comment_default
+    region: content
+  google_analytics:
+    weight: 3
     settings: {  }
     third_party_settings: {  }
     region: content

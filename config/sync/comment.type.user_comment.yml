@@ -1,0 +1,8 @@
+uuid: 8877ed0d-3f11-4aa7-96d7-0419ae3e18eb
+langcode: en
+status: true
+dependencies: {  }
+id: user_comment
+label: 'User Comment'
+target_entity_type_id: user
+description: ''

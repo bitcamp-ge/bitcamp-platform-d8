@@ -3,14 +3,26 @@ langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_display.comment.user_comment.default
     - core.entity_view_mode.user.full
+    - field.field.user.user.field_user_comment
   module:
+    - comment
     - user
 id: user.user.full
 targetEntityType: user
 bundle: user
 mode: full
 content:
+  field_user_comment:
+    type: comment_default
+    weight: 3
+    region: content
+    label: above
+    settings:
+      view_mode: default
+      pager_id: 0
+    third_party_settings: {  }
   masquerade:
     weight: 1
     region: content

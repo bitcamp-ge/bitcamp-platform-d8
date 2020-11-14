@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.user.compact
+    - field.field.user.user.field_user_comment
   module:
     - user
 id: user.user.compact
@@ -30,4 +31,5 @@ content:
       link: true
       view_mode: default
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  field_user_comment: true
