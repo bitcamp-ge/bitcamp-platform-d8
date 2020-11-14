@@ -24,3 +24,6 @@
 /.env
 /.editorconfig
 /.gitattributes
+
+# Vim
+*.swp

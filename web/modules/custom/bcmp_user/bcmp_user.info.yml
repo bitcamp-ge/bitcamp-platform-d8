@@ -1,0 +1,6 @@
+name: BitCamp User
+description: All BitCamp's user related functionality.
+package: BitCamp
+
+type: module
+core: 8.x

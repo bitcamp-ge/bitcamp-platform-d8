@@ -1,0 +1,7 @@
+phase1.page:
+  path: '/user/phase_1'
+  defaults:
+    _controller: '\Drupal\bcmp_user\Controller\BitCampUserPageController::phase1Page'
+    _title: 'Phase 1'
+  requirements:
+    _user_is_logged_in: 'TRUE'

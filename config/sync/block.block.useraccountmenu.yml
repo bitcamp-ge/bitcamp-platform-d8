@@ -1,24 +1,22 @@
-uuid: c451505b-7e5b-44f3-9dee-81d76b875510
+uuid: d7e7a9db-5d6e-4047-bbfc-fd2df2df79bf
 langcode: en
 status: true
 dependencies:
   config:
-    - system.menu.admin
+    - system.menu.account
   module:
     - system
   theme:
     - bitcampo
-_core:
-  default_config_hash: OFEDxrButmQ8Vac1kiVr1gtw6vYKuSJPr9cJQZVKCKg
-id: bitcampo_admin
+id: useraccountmenu
 theme: bitcampo
 region: navbar_right
-weight: -4
+weight: -3
 provider: null
-plugin: 'system_menu_block:admin'
+plugin: 'system_menu_block:account'
 settings:
-  id: 'system_menu_block:admin'
-  label: Administration
+  id: 'system_menu_block:account'
+  label: 'User account menu'
   provider: system
   label_display: '0'
   level: 1

@@ -68,11 +68,18 @@
           href="https://www.facebook.com/groups/3969683209738650/">FB ჯგუფი</a>
         <a class="nav-link" target="_blank"
           href="https://www.facebook.com/bitcamp.ge">FB გვერდი</a>
+	
+			{% if logged_in %}
+			<a href="/user/phase_1" target="_blank" class="btn">
+					ჩემი პროფილი👤	
+			</a>
+			{% endif %}
       </nav>
     </div>
   </header>
 
   <main role="main" class="inner cover">
+	{% if not logged_in %}
     <a href="/user/simple-fb-connect">
       <img class="fb-login" src="{{ base_path ~ directory }}/images/fb.png" style="
         border-radius: 8px;
@@ -82,7 +89,7 @@
         display: none;
         width: auto;">
     </a>
-
+	{% endif %}
     <img class="cover-heading" src="{{ base_path ~ directory }}/images/Group-Cover.jpg"/>
     <p class="lead">პროგრამირებისა და ვებ-ტექნოლოგიების სასწავლო პლათფორმა</p>
     <p class="lead">

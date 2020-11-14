@@ -764,14 +764,14 @@ display:
     position: 1
     display_options:
       display_extenders: {  }
-      path: phase-1
+      path: phase_1
       title: 'I ეტაპი'
       defaults:
         title: false
       display_description: ''
       menu:
         type: normal
-        title: 'I ეტაპი'
+        title: 'I ეტაპის შემოწმება'
         description: ''
         expanded: false
         parent: ''
