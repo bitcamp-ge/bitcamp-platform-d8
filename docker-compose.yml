@@ -10,9 +10,9 @@ services:
       MYSQL_DATABASE: $DB_NAME
       MYSQL_USER: $DB_USER
       MYSQL_PASSWORD: $DB_PASSWORD
-#    volumes:
+    volumes:
 #      - ./mariadb-init:/docker-entrypoint-initdb.d # Place init .sql file(s) here.
-#      - /path/to/mariadb/data/on/host:/var/lib/mysql # Use bind mount
+    - /home/mariadb-volume:/var/lib/mysql # Use bind mount
 
   php:
     image: wodby/drupal-php:$PHP_TAG
@@ -64,8 +64,7 @@ services:
     image: wodby/nginx:$NGINX_TAG
     container_name: "${PROJECT_NAME}_nginx"
     ports:
-      - 80:80
-      - 443:443
+    - 80:80
     depends_on:
     - php
     environment:
@@ -79,13 +78,12 @@ services:
     - ./:/var/www/html:cached
 ## Alternative for macOS users: Mutagen https://wodby.com/docs/stacks/drupal/local#docker-for-mac
 #    - mutagen:/var/www/html
-
     labels:
-    - "traefik.enable=true"
-    - "traefik.http.routers.${PROJECT_NAME}_nginx.rule=Host(`${PROJECT_BASE_URL}`)"
-    - "traefik.http.routers.${PROJECT_NAME}_nginx.entrypoints=websecure"
-    - "traefik.http.routers.${PROJECT_NAME}_nginx.tls.certresolver=myresolver"
-    - "traefik.http.routers.${PROJECT_NAME}_nginx.tls=true"
+      - "traefik.enable=true"
+      - "traefik.http.routers.${PROJECT_NAME}_nginx.rule=Host(`www.${PROJECT_BASE_URL}`)"
+      - "traefik.http.routers.${PROJECT_NAME}_nginx.entrypoints=websecure"
+      - "traefik.http.routers.${PROJECT_NAME}_nginx.tls.certresolver=myresolver"
+      - "traefik.http.routers.${PROJECT_NAME}_nginx.tls=true"
 
   mailhog:
     image: mailhog/mailhog
@@ -288,23 +286,25 @@ services:
 
   traefik:
     image: traefik:v2.0
-    container_name: "${PROJECT_NAME}_traefik"
+    container_name: "traefik"
     command:
-    - "--api.insecure=true"
-    - "--providers.docker=true"
-    - "--providers.docker.exposedbydefault=false"
-    - "--entrypoints.websecure.address=:443"
-    - "--certificatesresolvers.myresolver.acme.tlschallenge=true"
-    - "--certificatesresolvers.myresolver.acme.email=oto@bitcamp.ge"
-    - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
+      #- "--log.level=DEBUG"
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - --entrypoints.web.address=:80 
+      - "--entrypoints.websecure.address=:443"
+      - "--certificatesresolvers.myresolver.acme.tlschallenge=true"
+      #- "--certificatesresolvers.myresolver.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory"
+      - "--certificatesresolvers.myresolver.acme.email=oto@bitcamp.ge"
+      - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
     ports:
-    - 8000:80
-    - 4433:443
-#    - '8080:8080' # Dashboard
+      - "443:443"
+        #    - "80:80"
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - ./letsencrypt:/letsencrypt
-
+      - "./letsencrypt:/letsencrypt"
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+         
 #  mutagen:
 #    build:
 #      context: .
