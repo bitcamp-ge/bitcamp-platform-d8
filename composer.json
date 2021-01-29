@@ -25,7 +25,6 @@
         "drupal/core": "^8.8.0",
         "drupal/core-composer-scaffold": "^8.8.0",
         "drupal/disable_field": "^2.4",
-        "drupal/double_field": "^3.4",
         "drupal/field_permissions": "^1.1",
         "drupal/google_analytics": "^3.1",
         "drupal/masquerade": "^2.0@beta",
