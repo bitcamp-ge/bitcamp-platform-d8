@@ -35,7 +35,7 @@
         "drupal/rules": "^3.0@alpha",
         "drupal/simple_fb_connect": "^3.1",
         "drupal/views_bulk_operations": "^3.9",
-        "drupal/webform": "^5.22",
+        "drupal/webform": "^6",
         "drush/drush": "^9.7.1 | ^10.0.0",
         "vlucas/phpdotenv": "^4.0",
         "webflo/drupal-finder": "^1.0.0",
