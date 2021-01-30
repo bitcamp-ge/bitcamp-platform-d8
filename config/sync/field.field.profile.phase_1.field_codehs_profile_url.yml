@@ -1,0 +1,28 @@
+uuid: 04480b0f-e0ff-49c0-b74a-eb3496617818
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.field_codehs_profile_url
+    - profile.type.phase_1
+  module:
+    - disable_field
+    - link
+third_party_settings:
+  disable_field:
+    add_disable: none
+    edit_disable: none
+id: profile.phase_1.field_codehs_profile_url
+field_name: field_codehs_profile_url
+entity_type: profile
+bundle: phase_1
+label: 'Codehs-ის მომხმარებლის მისამართი'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 0
+field_type: link

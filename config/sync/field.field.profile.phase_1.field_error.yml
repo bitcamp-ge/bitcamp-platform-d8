@@ -1,0 +1,33 @@
+uuid: 73902fa3-92bb-46d4-936a-7295a706e08e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.field_error
+    - profile.type.phase_1
+  module:
+    - disable_field
+third_party_settings:
+  disable_field:
+    add_disable: roles_enable
+    edit_disable: roles_enable
+    add_roles:
+      - manager
+    edit_roles:
+      - manager
+id: profile.phase_1.field_error
+field_name: field_error
+entity_type: profile
+bundle: phase_1
+label: ხარვეზი
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: ✅
+  off_label: ❌
+field_type: boolean

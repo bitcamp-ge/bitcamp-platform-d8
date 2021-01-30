@@ -1,0 +1,25 @@
+uuid: 7f2c8cf4-3cfc-46bb-a682-026b564524fc
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.field_lastname
+    - profile.type.phase_1
+  module:
+    - disable_field
+third_party_settings:
+  disable_field:
+    add_disable: none
+    edit_disable: none
+id: profile.phase_1.field_lastname
+field_name: field_lastname
+entity_type: profile
+bundle: phase_1
+label: გვარი
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
