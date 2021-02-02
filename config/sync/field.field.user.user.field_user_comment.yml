@@ -33,6 +33,6 @@ settings:
   default_mode: 1
   per_page: 50
   anonymous: 0
-  form_location: false
+  form_location: true
   preview: 0
 field_type: comment
