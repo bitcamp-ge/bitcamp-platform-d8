@@ -15,6 +15,7 @@
   <file>web/modules</file>
   <file>web/profiles</file>
   <file>web/themes</file>
+  <file>tests</file>
 
   <!-- Patterns to exclude -->
   <exclude-pattern>*/contrib/*</exclude-pattern>
