@@ -4,7 +4,13 @@ defaults: &defaults
   docker:
     - image: drupal:8.9-apache
     - image: selenium/standalone-chrome:latest
+      auth:
+        username: $DOCKERHUB_USERNAME
+        password: $DOCKERHUB_PASSWORD
     - image: mariadb:10.5
+      auth:
+        username: $DOCKERHUB_USERNAME
+        password: $DOCKERHUB_PASSWORD
       environment:
         MYSQL_DATABASE: bitcamp
         MYSQL_ROOT_PASSWORD: toor
