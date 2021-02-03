@@ -1,4 +1,4 @@
-apikey: 
+apikey: null
 test_defaults:
   to: oto@bitcamp.ge
   subject: 'Test Email from SendGrid Module'
