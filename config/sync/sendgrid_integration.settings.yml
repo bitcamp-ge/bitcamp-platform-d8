@@ -1,0 +1,12 @@
+apikey: 
+test_defaults:
+  to: oto@bitcamp.ge
+  subject: 'Test Email from SendGrid Module'
+  body:
+    value: 'Test Message for SendGrid.'
+    format: plain_text
+  from_name: Ilia
+  to_name: ilia
+  reply_to: ''
+_core:
+  default_config_hash: g4qz7cPnloXFwtnLYfIKI2VS0gf_UFOz_I2uQiiulC8

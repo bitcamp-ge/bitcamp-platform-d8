@@ -1,0 +1,11 @@
+theme: current
+defaults:
+  sender: sendgrid_integration
+  formatter: sendgrid_integration
+_core:
+  default_config_hash: IhwTepsVwtbtbcT5GzQKhCXDCRvbk3MNkWqPiuiZ10s
+modules:
+  sendgrid_integration:
+    none:
+      formatter: sendgrid_integration
+      sender: sendgrid_integration

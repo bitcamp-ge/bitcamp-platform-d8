@@ -1,0 +1,25 @@
+uuid: f1dcf603-133d-43d6-825f-666655975149
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.field_name
+    - profile.type.phase_1
+  module:
+    - disable_field
+third_party_settings:
+  disable_field:
+    add_disable: none
+    edit_disable: none
+id: profile.phase_1.field_name
+field_name: field_name
+entity_type: profile
+bundle: phase_1
+label: სახელი
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

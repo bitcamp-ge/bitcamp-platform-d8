@@ -4,10 +4,14 @@ status: true
 dependencies:
   config:
     - field.field.profile.phase_1.field_breakout_url
+    - field.field.profile.phase_1.field_codehs_profile_url
     - field.field.profile.phase_1.field_completed
+    - field.field.profile.phase_1.field_error
     - field.field.profile.phase_1.field_final_project_embed
     - field.field.profile.phase_1.field_final_project_url
+    - field.field.profile.phase_1.field_lastname
     - field.field.profile.phase_1.field_manager
+    - field.field.profile.phase_1.field_name
     - field.field.profile.phase_1.field_verified
     - profile.type.phase_1
   module:
@@ -18,29 +22,14 @@ bundle: phase_1
 mode: default
 content:
   field_breakout_url:
-    weight: 1
+    weight: 4
     settings:
       placeholder_url: ''
       placeholder_title: ''
     third_party_settings: {  }
     type: link_default
     region: content
-  field_completed:
-    weight: 0
-    settings:
-      display_label: true
-    third_party_settings: {  }
-    type: boolean_checkbox
-    region: content
-  field_final_project_embed:
-    weight: 27
-    settings:
-      rows: 5
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textarea
-    region: content
-  field_final_project_url:
+  field_codehs_profile_url:
     weight: 2
     settings:
       placeholder_url: ''
@@ -48,14 +37,60 @@ content:
     third_party_settings: {  }
     type: link_default
     region: content
-  field_manager:
+  field_completed:
+    weight: 3
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+  field_error:
     weight: 26
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+  field_final_project_embed:
+    weight: 8
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textarea
+    region: content
+  field_final_project_url:
+    weight: 5
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
+  field_lastname:
+    weight: 1
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_manager:
+    weight: 7
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
+  field_name:
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
   field_verified:
-    weight: 3
+    weight: 6
     settings:
       display_label: true
     third_party_settings: {  }

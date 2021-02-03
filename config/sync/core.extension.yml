@@ -27,6 +27,7 @@ module:
   google_analytics: 0
   image: 0
   link: 0
+  mailsystem: 0
   masquerade: 0
   media: 0
   media_library: 0
@@ -42,6 +43,7 @@ module:
   profile: 0
   quickedit: 0
   rdf: 0
+  sendgrid_integration: 0
   shortcut: 0
   simple_fb_connect: 0
   syslog: 0
