@@ -2,7 +2,7 @@
 
 defaults: &defaults
   docker:
-    - image: drupal:8-apache
+    - image: drupal:8.9-apache
     - image: selenium/standalone-chrome:3.141
     - image: mariadb:10.5
       environment:
