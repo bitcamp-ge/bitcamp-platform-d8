@@ -3,7 +3,7 @@
 defaults: &defaults
   docker:
     - image: drupal:8.9-apache
-    - image: selenium/standalone-chrome:3.141
+    - image: selenium/standalone-chrome:latest
     - image: mariadb:10.5
       environment:
         MYSQL_DATABASE: bitcamp
