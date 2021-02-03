@@ -1,0 +1,31 @@
+default:
+  suites:
+    default:
+      contexts:
+        - FeatureContext
+        - Drupal\DrupalExtension\Context\DrupalContext
+        - Drupal\DrupalExtension\Context\MinkContext
+        - Drupal\DrupalExtension\Context\MessageContext
+        - Drupal\DrupalExtension\Context\DrushContext
+        - Drupal\DrupalExtension\Context\BatchContext
+        - miiimooo\BehatTools\Context\ParagraphsContext
+  gherkin:
+    cache: ~
+  extensions:
+    Drupal\MinkExtension:
+      goutte: ~
+      base_url: http://nginx
+      javascript_session: selenium2
+      selenium2:
+        wd_host: http://chrome:9515
+        capabilities: { 'chrome': {'switches':['--start-maximized','--disable-gpu','--headless']}}
+    Drupal\DrupalExtension:
+      blackbox: ~
+      api_driver: drupal
+      drupal:
+        drupal_root: web/
+      selectors:
+        message_selector: '.messages'
+        error_message_selector: '.messages.messages--error'
+        success_message_selector: '.messages.messages--status'
+        warning_message_selector: '.messages.messages--warning'

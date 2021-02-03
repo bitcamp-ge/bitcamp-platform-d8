@@ -27,3 +27,8 @@
 
 # Vim
 *.swp
+
+behat.yml
+phpunit.xml
+.phpunit.result.cache
+phpcs.xml

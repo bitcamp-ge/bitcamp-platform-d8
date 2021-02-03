@@ -1,0 +1,108 @@
+# Reusable steps.
+
+defaults: &defaults
+  docker:
+    - image: drupal:8.9-apache
+    - image: selenium/standalone-chrome:latest
+    - image: mariadb:10.5
+      environment:
+        MYSQL_DATABASE: bitcamp
+        MYSQL_ROOT_PASSWORD: toor
+        MYSQL_ROOT_HOST: "%"
+  working_directory: /opt/drupal
+
+restore_cache: &restore_cache
+  keys:
+    - v1-dependencies-{{ checksum "composer.json" }}
+    - v1-dependencies-
+
+save_cache: &save_cache
+  key: v1-dependencies-{{ checksum "composer.json" }}
+  paths:
+    - ./vendor
+
+install_dependencies: &install_dependencies
+  run:
+    name: Installing dependencies
+    command: composer install -n --prefer-dist
+install_drupal: &install_drupal
+  run:
+    name: Installing Drupal
+    command: |
+      cp .circleci/config/settings.php web/sites/default
+      cp .circleci/config/behat.yml.dist behat.yml
+      cp environments/development/development.services.yml ./web/sites/
+      ./vendor/bin/drush si --existing-config --account-name="admin" --account-pass="admin" -y
+      ./vendor/bin/drush cim -y
+      ./vendor/bin/drush cr
+
+prepare_environment: &prepare_environment
+  run:
+    name: Prepearing environment
+    command: |
+      apt update
+      apt install git -y
+      service apache2 start
+      rm -rf /opt/drupal
+prepare_artifacts_directory: &prepare_artifacts_directory
+  run:
+    name: Prepearing directories for artifacts
+    command: |
+      mkdir /opt/drupal/artifacts
+      mkdir /opt/drupal/artifacts/phpcs
+      mkdir /opt/drupal/artifacts/phpunit
+version: 2
+jobs:
+  run-code-sniffer:
+    <<: *defaults
+    steps:
+      - *prepare_environment
+      - checkout
+      - restore_cache: *restore_cache
+      - *install_dependencies
+      - save_cache: *save_cache
+      - *prepare_artifacts_directory
+      - run:
+          name: Inspecting coding standards
+          command: ./vendor/bin/phpcs --report=junit --report-junit=artifacts/phpcs/phpcs.xml
+      - store_test_results:
+          path: /opt/drupal/artifacts/phpcs
+      - store_artifacts:
+          path: /opt/drupal/artifacts
+  run-behat-tests:
+    <<: *defaults
+    steps:
+      - *prepare_environment
+      - checkout
+      - restore_cache: *restore_cache
+      - *install_dependencies
+      - save_cache: *save_cache
+      - *install_drupal
+      - run:
+          name: Running Behat tests
+          command: ./vendor/bin/behat
+  run-unit-tests:
+    <<: *defaults
+    steps:
+      - *prepare_environment
+      - checkout
+      - restore_cache: *restore_cache
+      - *install_dependencies
+      - save_cache: *save_cache
+      - *install_drupal
+      - *prepare_artifacts_directory
+      - run:
+          name: Running PHPUnit tests
+          command: ./vendor/bin/phpunit --log-junit artifacts/phpunit/phpunit.xml
+      - store_test_results:
+          path: /opt/drupal/artifacts/phpunit
+      - store_artifacts:
+          path: /opt/drupal/artifacts
+
+workflows:
+  version: 2
+  test_and_lint:
+    jobs:
+      - run-code-sniffer
+      - run-behat-tests
+      - run-unit-tests
