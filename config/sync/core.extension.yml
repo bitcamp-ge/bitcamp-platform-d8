@@ -51,6 +51,7 @@ module:
   taxonomy: 0
   telephone: 0
   text: 0
+  token: 0
   toolbar: 0
   typed_data: 0
   update: 0
@@ -64,6 +65,7 @@ module:
   webform_templates: 0
   webform_ui: 0
   webform_bootstrap: 1
+  comment_notify: 10
   views: 10
   minimal: 1000
 theme:
