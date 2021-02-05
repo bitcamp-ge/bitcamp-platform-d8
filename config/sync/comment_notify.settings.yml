@@ -1,0 +1,25 @@
+bundle_types:
+  - user--user--field_user_comment
+available_alerts:
+  1: true
+  2: true
+enable_default:
+  watcher: '1'
+  entity_author: true
+mail_templates:
+  watcher:
+    node:
+      subject: '[site:name] :: new comment on [node:title]'
+      body: "Hi [comment-subscribed:author],\r\n\r\n[comment:author] has commented on: \"[node:title]\"\r\n\r\n----\r\n[comment:title]\r\n[comment:body]\r\n----\r\n\r\nYou can view the comment at the following url\r\n[comment:url]\r\n\r\nYou can stop receiving emails when someone replies to this post,\r\nby going to [comment-subscribed:unsubscribe-url]\r\n\r\nYou can set up auto-following feature for all future posts\r\nby creating your own user with a few clicks here [site:login-url]\r\n\r\n-- [site:name] team\r\n[site:url]\r\n"
+    user:
+      subject: '[comment:author]-მ(ა) ასევე დატოვა კომენტარი'
+      body: "[comment:author]: \r\n\r\n[comment:body]\r\n\r\nვრცლად: \r\n[comment:url]"
+  entity_author:
+    node:
+      subject: '[site:name] :: new comment for your post'
+      body: "Hi [node:author],\r\n\r\nYou have received a comment on: \"[node:title]\"\r\n\r\n----\r\n[comment:title]\r\n[comment:body]\r\n----\r\n\r\nYou can view the comment at the following url\r\n[comment:url]\r\n\r\nYou will receive emails like this for all replies to your posts. You can\r\ndisable this by logging in and changing the settings on your user account at\r\n[node:author:edit-url].\r\n\r\n-- [site:name] team\r\n[site:url]\r\n"
+    user:
+      subject: '[comment:author]-მ(ა) დატოვა კომენტარი შენს პროფილზე'
+      body: "[comment:author]:\r\n\r\n[comment:body]\r\n\r\nვრცლად:\r\n[comment:url]"
+_core:
+  default_config_hash: y7oCzsZ-B0R-nyeSFO1f2h9BEChUQGSZT-3cqXd-sLE
