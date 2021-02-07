@@ -6,9 +6,6 @@ use Drupal\Core\Entity\EntityTypeManager;
 use Drupal\Core\Logger\LoggerChannelFactory;
 use Drupal\Core\Mail\MailManager;
 use Drupal\Core\Session\AccountProxy;
-use Drupal\sc_logger\Event\LoggerEventNames;
-use Drupal\sc_logger\Event\LoggerEvents;
-use Drupal\user\Entity\User;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
@@ -64,10 +61,14 @@ class EmailSenderService {
    *
    * @param \Drupal\Core\Mail\MailManager $mailManager
    *   Mail manager.
-   * @param LoggerChannelFactory $loggerFactory
-   * @param RequestStack $request
-   * @param AccountProxy $currentUser
-   * @param EntityTypeManager $entityTypeManager
+   * @param \Drupal\Core\Logger\LoggerChannelFactory $loggerFactory
+   *   Logger factory.
+   * @param \Symfony\Component\HttpFoundation\RequestStack $request
+   *   Request.
+   * @param \Drupal\Core\Session\AccountProxy $currentUser
+   *   Current user.
+   * @param \Drupal\Core\Entity\EntityTypeManager $entityTypeManager
+   *   Entity type manager.
    */
   public function __construct(MailManager $mailManager,
                               LoggerChannelFactory $loggerFactory,
@@ -81,7 +82,6 @@ class EmailSenderService {
     $this->entityTypeManager = $entityTypeManager;
   }
 
-
   /**
    * Sends verification mail to given email address.
    *
@@ -90,12 +90,12 @@ class EmailSenderService {
    * @param string $code
    *   Random code that is sent to user.
    */
-  public function sendVerificationEmail($to = null) {
+  public function sendVerificationEmail($to = NULL) {
     try {
-      /** @var User $user */
+      /** @var \Drupal\user\Entity\User $user */
       $user = $this->entityTypeManager->getStorage('user')->load($this->currentUser->id());
       $code = $this->generate(48);
-      if($to == null) {
+      if ($to == NULL) {
         $to = $user->getEmail();
       }
       $user->set('field_random_hash', $code);
@@ -112,11 +112,13 @@ class EmailSenderService {
       $result = $this->mailManager->mail($module, $key, $to, $langcode, $params, NULL, $send);
       if ($result['result'] != TRUE) {
         $message = "ვერ მოხერხდა ელ.ფოსტის გაგზავნა, გთხოვთ ცადოთ თავიდან ან მიმარტოთ ადმინისტრაციას";
-      } else {
+      }
+      else {
         $message = "ელ.ფოსტა წამრატებით გაიგზავნა შემდეგ მისამართზე: ${to} გთხოვთ მიჰყვეთ ელ.ფოსტაზე გამოგზავნილ ინსტრუქციას";
       }
       return $message;
-    }catch (\Exception $e) {
+    }
+    catch (\Exception $e) {
 
     }
   }

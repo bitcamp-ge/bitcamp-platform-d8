@@ -51,7 +51,7 @@ class PasswordForm extends FormBase {
     if (mb_strlen($form_state->getValue('password')) < 6) {
       $form_state->setErrorByName('length', $this->t('პაროლი მინიმუმ 6 სიმბოლოსგან უნდა შედგებოდეს'));
     }
-    if($form_state->getValue('password') != $form_state->getValue('password_confirm')) {
+    if ($form_state->getValue('password') != $form_state->getValue('password_confirm')) {
       $form_state->setErrorByName('mismatch', $this->t('გამეორებული პაროლი არ ემთხვევა მითითებულ პაროლს'));
     }
   }

@@ -1,28 +1,31 @@
 <?php
+
+/**
+ * @file
+ */
+
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Entity\EntityInterface;
-use Drupal\user\Entity\User;
 
 /**
  * Implements hook_preprocess_page().
- *
  */
 function bcmp_user_preprocess_page(&$variables) {
-//	print_r(\Drupal::routeMatch()->getRouteName());
+  // print_r(\Drupal::routeMatch()->getRouteName());
 }
-
 
 /**
  * Implements hook_theme().
  */
-function bcmp_user_theme()
-{
-  return[
-    'bcmp_set_password' =>[
+function bcmp_user_theme() {
+  return [
+    'bcmp_set_password' => [
       'render element' => 'children',
-      'variables'
-    ]];
+      'variables',
+    ],
+  ];
 }
+
 /**
  * Implements hook_mail().
  */
@@ -36,9 +39,12 @@ function bcmp_user_mail($key, &$message, $params) {
   }
 }
 
-function bcmp_user_user_presave(EntityInterface $user){
-  if($user->original !== NULL && $user->getEmail() != $user->original->getEmail()) {
-    $user->set('field_email_is_verified',false);
+/**
+ * Implements hook_user_presave().
+ */
+function bcmp_user_user_presave(EntityInterface $user) {
+  if ($user->original !== NULL && $user->getEmail() != $user->original->getEmail()) {
+    $user->set('field_email_is_verified', FALSE);
     /** @var \Drupal\bcmp_user\EmailSenderService $emailService */
     $emailService = \Drupal::service('bcmp_users.email_services');
     $emailService->sendVerificationEmail($user->getEmail());
