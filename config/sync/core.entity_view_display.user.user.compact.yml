@@ -4,6 +4,9 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.user.compact
+    - field.field.user.user.field_email_is_verified
+    - field.field.user.user.field_random_hash
+    - field.field.user.user.field_social_auth_password
     - field.field.user.user.field_user_comment
   module:
     - user
@@ -32,4 +35,7 @@ content:
       view_mode: default
     third_party_settings: {  }
 hidden:
+  field_email_is_verified: true
+  field_random_hash: true
+  field_social_auth_password: true
   field_user_comment: true

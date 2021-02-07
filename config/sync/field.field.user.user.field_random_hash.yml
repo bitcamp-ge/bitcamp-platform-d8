@@ -1,0 +1,25 @@
+uuid: 286b75ab-2fa1-403b-a9c2-8420a12f552f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_random_hash
+  module:
+    - disable_field
+    - user
+third_party_settings:
+  disable_field:
+    add_disable: none
+    edit_disable: none
+id: user.user.field_random_hash
+field_name: field_random_hash
+entity_type: user
+bundle: user
+label: 'Random hash'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long
