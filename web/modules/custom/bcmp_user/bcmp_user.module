@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 /**
  * Implements hook_preprocess_page().
@@ -6,4 +6,19 @@
  */
 function bcmp_user_preprocess_page(&$variables) {
 //	print_r(\Drupal::routeMatch()->getRouteName());
+}
+
+use Drupal\Component\Utility\Html;
+
+/**
+ * Implements hook_mail().
+ */
+function bcmp_user_mail($key, &$message, $params) {
+  switch ($key) {
+    case 'verify_email':
+      $message['from'] = \Drupal::config('system.site')->get('mail');
+      $message['subject'] = t('ელ.ფოსტის ვერიფიკაცია bitcamp.ge-ზე');
+      $message['body'][] = Html::escape($params['message']);
+      break;
+  }
 }

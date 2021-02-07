@@ -5,3 +5,17 @@ phase1.page:
     _title: 'Phase 1'
   requirements:
     _user_is_logged_in: 'TRUE'
+bcmp_user.send_verification_email:
+  path: '/user/send-email'
+  defaults:
+    _controller: '\Drupal\bcmp_user\Controller\BitCampUserPageController::sendEmail'
+    _title: ''
+  requirements:
+    _user_is_logged_in: 'TRUE'
+bcmp_user.veriy_email:
+  path: '/user/verify-email'
+  defaults:
+    _controller: '\Drupal\bcmp_user\Controller\BitCampUserPageController::verifyEmail'
+    _title: ''
+  requirements:
+    _user_is_logged_in: 'TRUE'
