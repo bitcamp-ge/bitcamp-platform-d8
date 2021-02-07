@@ -90,12 +90,14 @@ class EmailSenderService {
    * @param string $code
    *   Random code that is sent to user.
    */
-  public function sendVerificationEmail() {
+  public function sendVerificationEmail($to = null) {
     try {
       /** @var User $user */
       $user = $this->entityTypeManager->getStorage('user')->load($this->currentUser->id());
       $code = $this->generate(48);
-      $to = $user->getEmail();
+      if($to == null) {
+        $to = $user->getEmail();
+      }
       $user->set('field_random_hash', $code);
       $user->save();
       $host = $this->request->getCurrentRequest()->getSchemeAndHttpHost();
