@@ -7,7 +7,7 @@ use Drupal\Core\Entity\EntityTypeManager;
 use Drupal\Core\Session\AccountProxy;
 
 /**
- *
+ * User util services.
  */
 class UserUtilServices {
 

@@ -2,13 +2,42 @@
 
 namespace Drupal\bcmp_user\Form;
 
+use Drupal\bcmp_user\UserUtilServices;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Provides a BitCamp User form.
  */
 class PasswordForm extends FormBase {
+  /**
+   * User util services.
+   *
+   * @var \Drupal\bcmp_user\UserUtilServices
+   */
+  protected $userUtilServices;
+
+  /**
+   * PasswordForm constructor.
+   *
+   * @param \Drupal\bcmp_user\UserUtilServices $userUtilServices
+   *   User util services.
+   */
+  public function __construct(UserUtilServices $userUtilServices) {
+    $this->userUtilServices = $userUtilServices;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container) {
+    // Instantiates this form class.
+    return new static(
+    // Load the service required to construct this class.
+      $container->get('bcmp_users.util_services')
+    );
+  }
 
   /**
    * {@inheritdoc}
@@ -29,7 +58,7 @@ class PasswordForm extends FormBase {
     ];
     $form['password_confirm'] = [
       '#type' => 'password',
-      '#title' => $this->t('გაიმეორეთ პაროლი '),
+      '#title' => $this->t('გაიმეორეთ პაროლი'),
       '#required' => TRUE,
     ];
 
@@ -60,8 +89,7 @@ class PasswordForm extends FormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    $userUtilServices = \Drupal::service('bcmp_users.util_services');
-    $userUtilServices->setUserPassword($form_state->getValue('password'));
+    $this->userUtilServices->setUserPassword($form_state->getValue('password'));
     $this->messenger()->addStatus($this->t('პაროლი წარმატებით დაყენდა'));
     $form_state->setRedirect('user.page');
   }

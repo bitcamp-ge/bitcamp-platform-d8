@@ -9,7 +9,7 @@ use Drupal\Core\Session\AccountProxy;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
- *
+ * Email sender service.
  */
 class EmailSenderService {
 
@@ -87,8 +87,6 @@ class EmailSenderService {
    *
    * @param string $to
    *   Email address where we send mail.
-   * @param string $code
-   *   Random code that is sent to user.
    */
   public function sendVerificationEmail($to = NULL) {
     try {

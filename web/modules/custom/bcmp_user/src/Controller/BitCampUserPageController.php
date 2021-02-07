@@ -131,6 +131,7 @@ class BitCampUserPageController extends ControllerBase {
    * Sends email.
    *
    * @param \Symfony\Component\HttpFoundation\Request $request
+   *   Request.
    */
   public function sendEmail(Request $request) {
     $result = $this->emailSenderService->sendVerificationEmail();
