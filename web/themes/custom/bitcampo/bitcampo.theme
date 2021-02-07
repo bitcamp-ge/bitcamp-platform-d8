@@ -6,6 +6,7 @@
 
 // Include all files from the includes directory.
 use Drupal\user\Entity\User;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 $includes_path = dirname(__FILE__) . '/includes/*.inc';
 foreach (glob($includes_path) as $filename) {
@@ -13,6 +14,23 @@ foreach (glob($includes_path) as $filename) {
 }
 
 function bitcampo_preprocess_page(&$variables) {
+  $current_uri = \Drupal::request()->getRequestUri();
+  if ($current_uri != '/set-password') {
+    $current_user_id = \Drupal::currentUser()->id();
+    /** @var \Drupal\user\Entity\User $user */
+    $user = User::load($current_user_id);
+    if ($user->get('field_social_auth_password')->getValue()) {
+      $social_auth_check = $user->get('field_social_auth_password')->getValue()[0]['value'];
+    } else {
+      $social_auth_check = FALSE;
+    }
+    $social_auth = \Drupal::service('simple_fb_connect.persistent_data_handler');
+    $social_auth_token_check = $social_auth->get('access_token');
+    if (!$social_auth_check && $social_auth_token_check) {
+      $response = new RedirectResponse("/set-password");
+      $response->send();
+    }
+  }
   $current_user_id = \Drupal::currentUser()->id();
   if($current_user_id != 0) {
     /** @var \Drupal\user\Entity\User $user */
@@ -28,3 +46,4 @@ function bitcampo_preprocess_page(&$variables) {
     }
   }
 }
+

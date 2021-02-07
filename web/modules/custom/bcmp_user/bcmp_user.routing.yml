@@ -19,3 +19,12 @@ bcmp_user.veriy_email:
     _title: ''
   requirements:
     _user_is_logged_in: 'TRUE'
+
+bcmp_user.password:
+  path: '/set-password'
+  defaults:
+    _title: 'Password'
+    _form: 'Drupal\bcmp_user\Form\PasswordForm'
+  requirements:
+    _permission: 'access content'
+    _role: 'authenticated'

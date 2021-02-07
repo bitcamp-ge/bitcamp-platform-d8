@@ -7,4 +7,9 @@ services:
       - '@request_stack'
       - '@current_user'
       - '@entity_type.manager'
+  bcmp_users.util_services:
+    class: Drupal\bcmp_user\UserUtilServices
+    arguments:
+      - '@entity_type.manager'
+      - '@current_user'
 

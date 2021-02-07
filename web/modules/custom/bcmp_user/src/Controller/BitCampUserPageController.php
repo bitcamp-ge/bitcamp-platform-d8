@@ -3,8 +3,10 @@
 namespace Drupal\bcmp_user\Controller;
 
 use Drupal\bcmp_user\EmailSenderService;
+use Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Messenger\MessengerInterface;
+use Drupal\simple_fb_connect\SimpleFbConnectPersistentDataHandler;
 use Drupal\user\Entity\User;
 use Drupal\user\UserDataInterface;
 use Drupal\user\UserInterface;
@@ -57,6 +59,13 @@ class BitCampUserPageController extends ControllerBase {
    */
   protected $messenger;
 
+  /**
+   * Simple fb data handler.
+   *
+   * @var SimpleFbConnectPersistentDataHandler
+   */
+  private $fbDataHandler;
+
 
   /**
    * Constructs a BitCampUserPageController object.
@@ -75,12 +84,14 @@ class BitCampUserPageController extends ControllerBase {
 		UserDataInterface $user_data,
 		LoggerInterface $logger,
     EmailSenderService $emailSenderService,
-    MessengerInterface $messenger){
+    MessengerInterface $messenger,
+    SimpleFbConnectPersistentDataHandler $fbDataHandler){
 	    $this->userStorage = $user_storage;
   	  $this->userData = $user_data;
     	$this->logger = $logger;
     	$this->emailSenderService = $emailSenderService;
     	$this->messenger = $messenger;
+    	$this->fbDataHandler = $fbDataHandler;
   }
 
   /**
@@ -94,7 +105,8 @@ class BitCampUserPageController extends ControllerBase {
       $container->get('logger.factory')
       ->get('user'),
       $container->get('bcmp_users.email_services'),
-      $container->get('messenger'));
+      $container->get('messenger'),
+    $container->get('simple_fb_connect.persistent_data_handler'));
   }
 
 
@@ -149,6 +161,36 @@ class BitCampUserPageController extends ControllerBase {
     }
 
     return new RedirectResponse('/user');
+  }
+
+  public function facebookAuthPassword(Request $request) {
+    try {
+      $token = $this->fbDataHandler->get('access_token');
+      $current_user_id = $this->currentUser()->id();
+      /** @var User $user */
+      $user = $this->userStorage->load($current_user_id);
+      if ($user->get('field_social_auth_password')->getValue()) {
+        $password_check = $this->user->get('field_social_auth_password')->getValue()[0]['value'];
+      }
+      else {
+        $password_check = FALSE;
+      }
+      if ($token && !$password_check) {
+        return [
+          '#type' => 'markup',
+          '#theme' => 'bcp_set_password',
+          '#uid' => $user->id(),
+        ];
+      }
+      else {
+        $response = new RedirectResponse("/user");
+        $response->send();
+        return $response;
+      }
+    }
+    catch (InvalidPluginDefinitionException $e) {
+      $this->loggerFactory->get('girchi_users')->error($e->getMessage());
+    }
   }
 }
 
