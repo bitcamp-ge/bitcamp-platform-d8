@@ -262,18 +262,18 @@ services:
 #    labels:
 #    - "traefik.http.routers.${PROJECT_NAME}_xhprof.rule=Host(`xhprof.${PROJECT_BASE_URL}`)"
 
-#  chrome:
-#    image: selenium/standalone-chrome:$SELENIUM_CHROME_TAG
-#    container_name: "${PROJECT_NAME}_chrome"
-#    volumes:
-#    - /dev/shm:/dev/shm
-#    entrypoint:
-#    - chromedriver
-#    - "--no-sandbox"
-#    - "--disable-dev-shm-usage"
-#    - "--log-path=/tmp/chromedriver.log"
-#    - "--verbose"
-#    - "--whitelisted-ips="
+  chrome:
+    image: selenium/standalone-chrome:$SELENIUM_CHROME_TAG
+    container_name: "${PROJECT_NAME}_chrome"
+    volumes:
+    - /dev/shm:/dev/shm
+    entrypoint:
+    - chromedriver
+    - "--no-sandbox"
+    - "--disable-dev-shm-usage"
+    - "--log-path=/tmp/chromedriver.log"
+    - "--verbose"
+    - "--whitelisted-ips="
 
   portainer:
     image: portainer/portainer
@@ -292,7 +292,7 @@ services:
       - "--api.insecure=true"
       - "--providers.docker=true"
       - "--providers.docker.exposedbydefault=false"
-      - --entrypoints.web.address=:80 
+      - --entrypoints.web.address=:80
       - "--entrypoints.websecure.address=:443"
       - "--certificatesresolvers.myresolver.acme.tlschallenge=true"
       #- "--certificatesresolvers.myresolver.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory"
@@ -304,7 +304,7 @@ services:
     volumes:
       - "./letsencrypt:/letsencrypt"
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
-         
+
 #  mutagen:
 #    build:
 #      context: .
