@@ -109,10 +109,19 @@ class EmailSenderService {
 
       $result = $this->mailManager->mail($module, $key, $to, $langcode, $params, NULL, $send);
       if ($result['result'] != TRUE) {
-        $message = "ვერ მოხერხდა ელ.ფოსტის გაგზავნა, გთხოვთ ცადოთ თავიდან ან მიმართოთ ადმინისტრაციას";
+        $data = [
+          'code' => 400,
+          'message' =>
+          'ვერ მოხერხდა ელ.ფოსტის გაგზავნა, გთხოვთ ცადოთ თავიდან ან მიმართოთ ადმინისტრაციას',
+        ];
       }
       else {
-        $message = "ვერიფიკაციის ბმული გამოგზავნილია ${to} - ზე გთხოვთ მიჰყვეთ მას.";
+        $message =
+        $data = [
+          'code' => 200,
+          'message' =>
+            "ვერიფიკაციის ბმული გამოგზავნილია ${to} - ზე გთხოვთ მიჰყვეთ მას."
+        ];
       }
       return $message;
     }

@@ -5,7 +5,13 @@ jQuery("document").ready(function () {
       type: "POST",
       url: "/user/send-email",
     }).done((data) => {
-      let html = `<div class="alert alert-success" role="alert">${data}</div>`;
+      let html = '';
+      console.log(data.code)
+      if(data.code === 200) {
+        html = `<div class="alert alert-success" role="alert">${data.message}</div>`;
+      } else {
+        html = `<div class="alert alert-danger" role="alert">${data.message}</div>`;
+      }
       jQuery("#emailVerContainer").html(html)
     });
   })
