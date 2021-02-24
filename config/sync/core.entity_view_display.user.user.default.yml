@@ -3,6 +3,10 @@ langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_display.comment.user_comment.default
+    - field.field.user.user.field_email_is_verified
+    - field.field.user.user.field_random_hash
+    - field.field.user.user.field_social_auth_password
     - field.field.user.user.field_user_comment
   module:
     - comment
@@ -12,6 +16,16 @@ targetEntityType: user
 bundle: user
 mode: default
 content:
+  field_social_auth_password:
+    weight: 4
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+    region: content
   field_user_comment:
     weight: 3
     label: above
@@ -40,4 +54,6 @@ content:
       link: true
       view_mode: default
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  field_email_is_verified: true
+  field_random_hash: true

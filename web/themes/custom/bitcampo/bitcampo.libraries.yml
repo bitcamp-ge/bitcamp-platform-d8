@@ -6,6 +6,7 @@ style:
       assets/css/cover.css: {}
   js:
     assets/js/bitcampo.script.js: {}
+    assets/js/custom.js: {}
   dependencies:
     - core/jquery
     - core/drupal

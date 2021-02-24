@@ -1,9 +1,55 @@
-<?php 
+<?php
+
+/**
+ * @file
+ */
+
+use Drupal\Component\Utility\Html;
+use Drupal\Core\Entity\EntityInterface;
 
 /**
  * Implements hook_preprocess_page().
- *
  */
 function bcmp_user_preprocess_page(&$variables) {
-//	print_r(\Drupal::routeMatch()->getRouteName());
+  // print_r(\Drupal::routeMatch()->getRouteName());
+}
+
+/**
+ * Implements hook_theme().
+ */
+function bcmp_user_theme() {
+  return [
+    'bcmp_set_password' => [
+      'render element' => 'children',
+      'variables',
+    ],
+  ];
+}
+
+/**
+ * Implements hook_mail().
+ */
+function bcmp_user_mail($key, &$message, $params) {
+  switch ($key) {
+    case 'verify_email':
+      $message['from'] = \Drupal::config('system.site')->get('mail');
+      $message['subject'] = t('ელ.ფოსტის ვერიფიკაცია bitcamp.ge-ზე');
+      $message['body'][] = Html::escape($params['message']);
+      break;
+  }
+}
+
+/**
+ * Implements hook_user_presave().
+ */
+function bcmp_user_user_presave(EntityInterface $user) {
+  if ($user->original !== NULL && $user->getEmail() != $user->original->getEmail()) {
+    $user->set('field_email_is_verified', FALSE);
+    /** @var \Drupal\bcmp_user\EmailSenderService $emailService */
+    $emailService = \Drupal::service('bcmp_users.email_services');
+    $code = $emailService->generate(48);
+    $user->set('field_random_hash', $code);
+    $emailService->sendVerificationEmail($user->getEmail(), $code);
+    \Drupal::messenger()->addMessage('ელ.ფოსტა წარმატებით შეიცვალა გთხოვთ მიყვეთ ლინკს გამოგზავნილ მესიჯში.');
+  }
 }

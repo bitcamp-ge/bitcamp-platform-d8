@@ -1,0 +1,16 @@
+services:
+  bcmp_users.email_services:
+    class: Drupal\bcmp_user\EmailSenderService
+    arguments:
+      - '@plugin.manager.mail'
+      - '@logger.factory'
+      - '@request_stack'
+      - '@current_user'
+      - '@entity_type.manager'
+      - '@user.private_tempstore'
+  bcmp_users.util_services:
+    class: Drupal\bcmp_user\UserUtilServices
+    arguments:
+      - '@entity_type.manager'
+      - '@current_user'
+

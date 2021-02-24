@@ -3,9 +3,11 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.user.user.field_email_is_verified
+    - field.field.user.user.field_random_hash
+    - field.field.user.user.field_social_auth_password
     - field.field.user.user.field_user_comment
   module:
-    - comment
     - user
 id: user.user.default
 targetEntityType: user
@@ -13,35 +15,17 @@ bundle: user
 mode: default
 content:
   account:
-    weight: -10
-    settings: {  }
-    third_party_settings: {  }
-    region: content
-  contact:
-    weight: 5
-    settings: {  }
-    third_party_settings: {  }
-    region: content
-  field_user_comment:
-    weight: 7
-    settings: {  }
-    third_party_settings: {  }
-    type: comment_default
-    region: content
-  google_analytics:
-    weight: 3
-    settings: {  }
-    third_party_settings: {  }
-    region: content
-  language:
     weight: 0
+    region: content
     settings: {  }
     third_party_settings: {  }
-    region: content
-  timezone:
-    weight: 6
-    settings: {  }
-    third_party_settings: {  }
-    region: content
 hidden:
+  contact: true
+  field_email_is_verified: true
+  field_random_hash: true
+  field_social_auth_password: true
+  field_user_comment: true
+  google_analytics: true
+  language: true
   phase_1_profiles: true
+  timezone: true

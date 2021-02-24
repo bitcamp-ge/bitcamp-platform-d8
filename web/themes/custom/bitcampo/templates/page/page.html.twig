@@ -1,0 +1,84 @@
+{#
+/**
+ * @file
+ * Template for the main page.
+ */
+#}
+<div class="page">
+
+  {% embed '@radix/navbar/navbar.twig' with {
+    placement: 'sticky-top',
+    container: 'fixed',
+    color: 'light',
+    utility_classes: ['bg-light'],
+  } %}
+
+    {% block branding %}
+      {% if page.navbar_branding %}
+        {{ page.navbar_branding }}
+      {% endif %}
+    {% endblock %}
+
+    {% block left %}
+
+      {% if page.navbar_left %}
+        <div class="mr-auto">
+          {{ page.navbar_left }}
+        </div>
+      {% endif %}
+    {% endblock %}
+
+    {% block right %}
+      {% if page.navbar_right %}
+        {{ page.navbar_right }}
+      {% endif %}
+    {% endblock %}
+  {% endembed %}
+
+  <main class="pt-5 pb-5">
+    {% if header_vars.is_email_verified == 0 and header_vars.show_text %}
+      {% if header_vars.email_sent  == true%}
+    <div class="container" id="emailVerContainer">
+      <div class="alert alert-warning">
+        ელ.ფოსტაზე გამოგზავნილია ვერიფიკაციის კოდი, გთხოვთ გადაამოწმოთ.
+      </div>
+    </div>
+      {% else %}
+        <div class="container" id="emailVerContainer">
+          <div class="alert alert-danger" role="alert" >
+            თქვენ არ გაქვთ გავლილი ელ.ფოსტის ვერიფიკაცია.
+          </div>
+          <div class="alert alert-warning">
+            ელ.ფოსტის ვერიფიკაციის დასაწყებად <a href="#" id="emailVerification">დააკლიკეთ აქ.</a>
+          </div>
+        </div>
+      {% endif %}
+
+    {% endif %}
+    {% if page.header %}
+      <header class="page__header mb-3">
+        <div class="container">
+          {{ page.header }}
+        </div>
+      </header>
+    {% endif %}
+
+    {% if page.content %}
+      <div class="page__content">
+        <div class="container">
+          {{ page.content }}
+        </div>
+      </div>
+    {% endif %}
+  </main>
+
+  {% if page.footer %}
+    <footer class="page__footer">
+      <div class="container">
+        <div class="d-flex justify-content-md-between align-items-md-center">
+          {{ page.footer }}
+        </div>
+      </div>
+    </footer>
+  {% endif %}
+</div>
