@@ -47,7 +47,9 @@ function bcmp_user_user_presave(EntityInterface $user) {
     $user->set('field_email_is_verified', FALSE);
     /** @var \Drupal\bcmp_user\EmailSenderService $emailService */
     $emailService = \Drupal::service('bcmp_users.email_services');
-    $emailService->sendVerificationEmail($user->getEmail());
+    $code = $emailService->generate(48);
+    $user->set('field_random_hash', $code);
+    $emailService->sendVerificationEmail($user->getEmail(), $code);
     \Drupal::messenger()->addMessage('ელ.ფოსტა წარმატებით შეიცვალა გთხოვთ მიყვეთ ლინკს გამოგზავნილ მესიჯში.');
   }
 }

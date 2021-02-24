@@ -13,6 +13,7 @@ use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Defines BitCampUserPageController class.
@@ -134,8 +135,18 @@ class BitCampUserPageController extends ControllerBase {
    *   Request.
    */
   public function sendEmail(Request $request) {
-    $result = $this->emailSenderService->sendVerificationEmail();
-    return new JsonResponse($result);
+    try {
+      /** @var \Drupal\user\Entity\User $user */
+      $user = $this->entityTypeManager->getStorage('user')->load($this->currentUser->id());
+      $code = $this->emailSenderService->generate(48);
+      $user->set('field_random_hash', $code);
+      $user->save();
+      $result = $this->emailSenderService->sendVerificationEmail($user->getEmail(), $code);
+      return new JsonResponse($result);
+    }
+    catch (\Exception $e) {
+      return new JsonResponse([], Response::HTTP_BAD_REQUEST);
+    }
   }
 
   /**

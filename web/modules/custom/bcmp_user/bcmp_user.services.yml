@@ -7,6 +7,7 @@ services:
       - '@request_stack'
       - '@current_user'
       - '@entity_type.manager'
+      - '@user.private_tempstore'
   bcmp_users.util_services:
     class: Drupal\bcmp_user\UserUtilServices
     arguments:

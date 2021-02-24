@@ -37,14 +37,23 @@
 
   <main class="pt-5 pb-5">
     {% if header_vars.is_email_verified == 0 and header_vars.show_text %}
+      {% if header_vars.email_sent  == true%}
     <div class="container" id="emailVerContainer">
-      <div class="alert alert-danger" role="alert" >
-        თქვენ არ გაქვთ გავლილი ელ.ფოსტის ვერიფიკაცია.
-      </div>
       <div class="alert alert-warning">
-        ელ.ფოსტის ვერიფიკაციის დასაწყებად <a href="#" id="emailVerification">დააკლიკეთ აქ.</a>
+        ელ.ფოსტაზე გამოგზავნილია ვერიფიკაციის კოდი, გთხოვთ გადაამოწმოთ.
       </div>
     </div>
+      {% else %}
+        <div class="container" id="emailVerContainer">
+          <div class="alert alert-danger" role="alert" >
+            თქვენ არ გაქვთ გავლილი ელ.ფოსტის ვერიფიკაცია.
+          </div>
+          <div class="alert alert-warning">
+            ელ.ფოსტის ვერიფიკაციის დასაწყებად <a href="#" id="emailVerification">დააკლიკეთ აქ.</a>
+          </div>
+        </div>
+      {% endif %}
+
     {% endif %}
     {% if page.header %}
       <header class="page__header mb-3">

@@ -6,6 +6,7 @@ use Drupal\Core\Entity\EntityTypeManager;
 use Drupal\Core\Logger\LoggerChannelFactory;
 use Drupal\Core\Mail\MailManager;
 use Drupal\Core\Session\AccountProxy;
+use Drupal\Core\TempStore\PrivateTempStoreFactory;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
@@ -49,6 +50,14 @@ class EmailSenderService {
    */
   protected $entityTypeManager;
 
+
+  /**
+   * Private temp store.
+   *
+   * @var \Drupal\Core\TempStore\PrivateTempStoreFactory
+   */
+  protected $tempStore;
+
   /**
    * Allowed chars for random string.
    *
@@ -69,17 +78,21 @@ class EmailSenderService {
    *   Current user.
    * @param \Drupal\Core\Entity\EntityTypeManager $entityTypeManager
    *   Entity type manager.
+   * @param \Drupal\Core\TempStore\PrivateTempStoreFactory $tempStoreFactory
+   *   Private temp store factory.
    */
   public function __construct(MailManager $mailManager,
                               LoggerChannelFactory $loggerFactory,
                               RequestStack $request,
                               AccountProxy $currentUser,
-                              EntityTypeManager $entityTypeManager) {
+                              EntityTypeManager $entityTypeManager,
+                              PrivateTempStoreFactory $tempStoreFactory) {
     $this->mailManager = $mailManager;
     $this->loggerFactory = $loggerFactory;
     $this->request = $request;
     $this->currentUser = $currentUser;
     $this->entityTypeManager = $entityTypeManager;
+    $this->tempStore = $tempStoreFactory->get('bcmp_user');
   }
 
   /**
@@ -88,16 +101,8 @@ class EmailSenderService {
    * @param string $to
    *   Email address where we send mail.
    */
-  public function sendVerificationEmail($to = NULL) {
+  public function sendVerificationEmail($to, $code) {
     try {
-      /** @var \Drupal\user\Entity\User $user */
-      $user = $this->entityTypeManager->getStorage('user')->load($this->currentUser->id());
-      $code = $this->generate(48);
-      if ($to == NULL) {
-        $to = $user->getEmail();
-      }
-      $user->set('field_random_hash', $code);
-      $user->save();
       $host = $this->request->getCurrentRequest()->getSchemeAndHttpHost();
       $url = "${host}/user/verify-email?code=${code}";
       $message = "მიყევით მოცემულ ლინკს რათა bitcamp.ge-ზე გაიაროთ ელ.ფოსტის ვერიფიკაცია \n $url";
@@ -116,14 +121,14 @@ class EmailSenderService {
         ];
       }
       else {
-        $message =
         $data = [
           'code' => 200,
           'message' =>
           "ვერიფიკაციის ბმული გამოგზავნილია ${to} - ზე გთხოვთ მიჰყვეთ მას.",
         ];
+        $this->tempStore->set('email_sent', TRUE);
       }
-      return $message;
+      return $data;
     }
     catch (\Exception $e) {
 

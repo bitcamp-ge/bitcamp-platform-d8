@@ -1,7 +1,8 @@
 <?php
+
 /**
  * @file
- * Theme functions
+ * Theme functions.
  */
 
 // Include all files from the includes directory.
@@ -13,15 +14,20 @@ foreach (glob($includes_path) as $filename) {
   require_once dirname(__FILE__) . '/includes/' . basename($filename);
 }
 
+/**
+ *
+ */
 function bitcampo_preprocess_page(&$variables) {
   $current_uri = \Drupal::request()->getRequestUri();
+  $tempstore = \Drupal::service('user.private_tempstore')->get('bcmp_user');
   if ($current_uri != '/set-password') {
     $current_user_id = \Drupal::currentUser()->id();
     /** @var \Drupal\user\Entity\User $user */
     $user = User::load($current_user_id);
     if ($user->get('field_social_auth_password')->getValue()) {
       $social_auth_check = $user->get('field_social_auth_password')->getValue()[0]['value'];
-    } else {
+    }
+    else {
       $social_auth_check = FALSE;
     }
     $social_auth = \Drupal::service('simple_fb_connect.persistent_data_handler');
@@ -32,18 +38,18 @@ function bitcampo_preprocess_page(&$variables) {
     }
   }
   $current_user_id = \Drupal::currentUser()->id();
-  if($current_user_id != 0) {
+  if ($current_user_id != 0) {
     /** @var \Drupal\user\Entity\User $user */
     $user = User::load($current_user_id);
-    if(!count(array_intersect($user->getRoles(), ['manager','administrator']))) {
+    if (!count(array_intersect($user->getRoles(), ['manager', 'administrator']))) {
       $email = $user->getEmail();
       $is_email_verified = $user->get('field_email_is_verified')->value;
       $variables['header_vars'] = [
         "is_email_verified" => $is_email_verified,
-        "show_text" => true,
-        "email" => $email
+        "show_text" => TRUE,
+        "email" => $email,
+        "email_sent" => $tempstore->get('email_sent'),
       ];
     }
   }
 }
-
