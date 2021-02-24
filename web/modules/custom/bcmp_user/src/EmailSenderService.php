@@ -100,6 +100,8 @@ class EmailSenderService {
    *
    * @param string $to
    *   Email address where we send mail.
+   * @param string $code
+   *   Random code that is sent to email.
    */
   public function sendVerificationEmail($to, $code) {
     try {
